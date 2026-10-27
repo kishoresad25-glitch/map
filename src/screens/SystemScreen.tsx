@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import GymCoachPanel from '../components/GymCoachPanel';
 
 const C = {
   bg: '#05070d',
@@ -326,6 +327,9 @@ export default function SystemScreen() {
             </View>
             <Text style={styles.calibration}>⚠ Provisional stats — complete the Assessment Quest to calibrate baseline.</Text>
           </Panel>
+
+          {/* COACH PROTOCOL */}
+          <GymCoachPanel onLog={pushLog} />
 
           {/* DAILY QUEST */}
           <Panel>

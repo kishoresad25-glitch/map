@@ -80,3 +80,24 @@ If the live preview URL is blocked by an E2B traffic-access-token requirement, o
 HTML file with the production JS bundle inlined and `window.global` shimmed — no dev server,
 no network and no sandbox token needed. It was generated from `npm run build` output.
 A rendered screenshot is saved as `system-standalone-preview.png`.
+
+## Gym Coach engine
+`src/coach/gymCoach.ts` is a pure TypeScript coaching engine. It reads the real 90-day
+plan from the user's Google Calendar and returns a daily prescription based on:
+
+- current training phase (Phase 1 until 18 Oct, Phase 2 19 Oct–15 Nov,
+  Phase 3 16 Nov–16 Dec 2026, then maintenance),
+- sleep hours, session RPE, soreness (1–5), consecutive clean sessions,
+- exam-day mode (auto-on 27–28 Oct 2026),
+- rest-day detection (Sunday),
+- weekly push / pull / hinge balance corrections.
+
+It outputs a `DELOAD`, `PROGRESS` or `MAINTAIN` decision plus sets, target RPE, cardio
+minutes, prescription lines, form cues, deload-week advice, recovery guidance and a
+medical disclaimer. The UI lives in `src/components/GymCoachPanel.tsx`, is embedded in
+`SystemScreen` and also available as a standalone `src/screens/CoachScreen.tsx`
+(navigation target `CoachScreen`, reachable from the Home screen's **Open Coach** button).
+
+Rendered proof of the coach states: `coach-progress.png` (exam mode off → PROGRESS),
+`system-preview.png` (exam mode on → DELOAD), and `system-standalone-preview.png`
+(self-contained offline build). These are generated artifacts and are gitignored.
