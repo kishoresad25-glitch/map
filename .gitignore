@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.vite/
+.expo/
+*.log
+.DS_Store
+
+# generated preview screenshots / capture scripts
+system-preview*.png
+.capture*.cjs
+
+# generated standalone build
+system-standalone.html
+system-standalone-preview.png
